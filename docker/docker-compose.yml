@@ -1,0 +1,26 @@
+version: "3"
+# tl(time-lens)
+services:
+  tl-db-local:
+    container_name: tl-db-local
+    image: mariadb:10.4
+    restart: always
+    ports: 
+      - "51000:3306"
+    volumes:
+      - "../volumes/local/database/data:/var/lib/mysql"
+      - "../volumes/local/database/sql:/docker-entrypoint-initdb.d"
+      - "../volumes/local/database/conf.d:/etc/mysql/conf.d"
+      - "../volumes/local/database/backup:/backup"
+    env_file: .env
+    environment:
+      TZ: Asia/Seoul
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    networks:
+      - local
+networks:
+  local:
+    driver: bridge

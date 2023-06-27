@@ -1,0 +1,10 @@
+# Nodejs
+**/node_modules/
+**/package-lock.json
+
+# log
+*.log
+
+# volume
+volumes/
+
