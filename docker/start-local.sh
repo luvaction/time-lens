@@ -3,10 +3,10 @@
 #start.sh
 
 # Import environment variables
-source .env
+source .env.local
 
 # start
-docker-compose -p $PROJECT_NAME up -d --build
+docker-compose -f $DOCKER_COMPOSE_FILE -p $PROJECT_NAME up -d --build
 
 sleep 5
 

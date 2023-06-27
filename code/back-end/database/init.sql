@@ -5,10 +5,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `user_id` VARCHAR(50) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
-  `name` VARCHAR(50) NOT NULL,
-  `nickname` VARCHAR(50) NOT NULL,
-  `sex` ENUM('male', 'female', 'other') NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
+  `name` VARCHAR(50) NULL,
+  `nickname` VARCHAR(50) NULL,
+  `sex` ENUM('male', 'female', 'other') NULL,
+  `email` VARCHAR(100) NULL,
   `address` VARCHAR(200)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='서비스 사용자';
 
@@ -83,3 +83,10 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `expiration_date` DATETIME NOT NULL,
   `active` BOOLEAN NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='세션';
+
+
+--
+
+INSERT INTO `users` (`user_id`, `password`, `name`, `nickname`, `sex`, `email`, `address`)
+VALUES
+('user01', '123', 'timo', 'bee', 'male', 'bee@gmail.com', 'martin');
