@@ -1,28 +1,36 @@
-// src/services/test.service.ts
-import { Injectable } from '@nestjs/common';
+// src/services/user.service.ts
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { User } from 'src/entities/user.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UserService {
-  async get(id: string): Promise<string> {
-    return `GET ${id}`;
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+  ) {}
+
+  async findOne(user_id: string): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { user_id } });
+    if (!user) {
+      throw new NotFoundException(`User with ID ${user_id} not found`);
+    }
+
+    return user;
   }
 
-  async getAll(): Promise<string> {
+
+  async findAll(): Promise<string> {
     return 'get User';
   }
 
   async create(user: Partial<User>): Promise<User> {
-    // 데이터베이스에서 새로운 사용자를 만들어야 합니다.
-    // 이 예제에서는 가상의 사용자를 반환합니다.
-    const createdUser = {
-      id: Math.floor(Math.random() * 10000),
-      ...user,
-    } as User;
-
-    // 실제로는 TypeORM 등의 라이브러리를 사용하여 사용자를 데이터베이스에 저장해야 합니다.
-
-    return createdUser;
+    console.log("craete");
+    console.log(user)
+    const createdUser = this.usersRepository.create(user);
+    const savedUser = await this.usersRepository.save(createdUser);
+    return savedUser;
   }
 
   async update(

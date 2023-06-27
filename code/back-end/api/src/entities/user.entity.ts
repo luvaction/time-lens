@@ -6,9 +6,28 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
-  username: string;
+  @Column({ length: 50 })
+  user_id: string;
 
-  @Column()
+  @Column({ length: 100 })
   password: string;
+
+  @Column({ length: 50 })
+  name: string;
+
+  @Column({ length: 50 })
+  nickname: string;
+
+  @Column({ 
+    type: "enum", 
+    enum: ['male', 'female', 'other'], 
+    default: 'other'
+  })
+  sex: string;
+
+  @Column({ length: 100 })
+  email: string;
+
+  @Column({ type: 'varchar', length: 200, nullable: true })
+  address: string;
 }

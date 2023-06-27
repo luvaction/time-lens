@@ -21,34 +21,35 @@ export class UserController {
     private readonly userService: UserService,
   ) {}
 
+  @Get(':user_id')
+  async getUser(@Param('user_id') user_id: string) {
+    const user = await this.userService.findOne(user_id);
+    return user;
+  }
+
   @Get()
   async getAllUsers() {
-    const users = await this.userService.getAll();
+    const users = await this.userService.findAll();
     return users;
   }
 
-  @Post('/register')
+
+  @Post()
   @UsePipes(new ValidationPipe())
   async registerUser(@Body() userDto: UserDto) {
-    const { username, password } = userDto;
+    const { user_id, password } = userDto;
     const newUser = await this.userRegistrationService.createUser(
-      username,
+      user_id,
       password,
     );
     return newUser;
   }
 
-  @Get(':id')
-  async getUser(@Param('id') id: string) {
-    const user = await this.userService.get(id);
-    return user;
-  }
-
   @Put(':id')
   @UsePipes(new ValidationPipe())
   async updateUser(@Param('id') id: string, @Body() userDto: UserDto) {
-    const { username, password } = userDto;
-    const updatedUser = await this.userService.update(id, username, password);
+    const { user_id, password } = userDto;
+    const updatedUser = await this.userService.update(id, user_id, password);
     return updatedUser;
   }
 
