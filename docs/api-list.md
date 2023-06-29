@@ -6,26 +6,26 @@
 - patch :
 - delete :
 
-### List
+## `List`
 
-## User
+### User
 
-## Group
+### Group
 
-## GroupMember
+### GroupMember
 
-## Task
+### Task
 
-## Plan
+### Plan
 
-## Charge
+### Charge
 
-## Tasks
+### Tasks
 
-## Templates
+### Templates
 
-## Auth
+### Auth
 - login
 - signup
 
-## Sessions
+### Sessions
