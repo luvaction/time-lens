@@ -54,3 +54,10 @@
 - Language : Typescript
 - Front-End Framework : vue3
 - CI/CD : Jenkins
+- Mobile App : Android Studio(Kotlin)
+
+
+## Back Logs
+
+- 기획 기능 (피그마 벤치마킹)
+- 그룹 기능 (레드마인 벤치마킹 + 개인의 권한 위주)

@@ -1,21 +1,31 @@
 # api
 
-## List
-
-### User
-
 - findOne :
 - pagination :
-- creaet :
+- create :
 - patch :
 - delete :
+
+### List
+
+## User
 
 ## Group
 
+## GroupMember
+
 ## Task
 
-- findOne :
-- pagination :
-- creaet :
-- patch :
-- delete :
+## Plan
+
+## Charge
+
+## Tasks
+
+## Templates
+
+## Auth
+- login
+- signup
+
+## Sessions
