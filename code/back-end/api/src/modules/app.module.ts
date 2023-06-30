@@ -15,8 +15,10 @@ import { ConfigModule } from "@nestjs/config";
     TypeOrmModule.forRoot(config),
     UserModule,  // Import the UserModule
     ConfigModule.forRoot({
+      envFilePath: `.env.${process.env.NODE_ENV}`,
       cache: true,
       isGlobal: true,
+      ignoreEnvFile: false,
     }),
   ],
   controllers: [

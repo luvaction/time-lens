@@ -32,10 +32,10 @@ services:
       - ../volumes/dev/api/public:/app/public
     build:
       context: ../code/back-end/api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     networks:
       - dev
-    env_file: .env
+    env_file: .env.dev
 networks:
   dev:
     driver: bridge
