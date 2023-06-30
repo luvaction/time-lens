@@ -35,16 +35,27 @@ export default defineComponent({
 
 .header {
   flex: 0 0 10%;
+  font-size: 30px;
   max-height: 10%;
-  background-color: blue; /* 배경색이 잘 적용되었는지 확인하실 수 있도록 추가했습니다 */
+  background-color: rgb(
+    177,
+    177,
+    177
+  ); /* 배경색이 잘 적용되었는지 확인하실 수 있도록 추가했습니다 */
 }
 .footer {
   flex: 0 0 10%;
+  font-size: 20px;
   max-height: 10%;
-  background-color: red; /* 배경색이 잘 적용되었는지 확인하실 수 있도록 추가했습니다 */
+  background-color: rgb(
+    48,
+    48,
+    48
+  ); /* 배경색이 잘 적용되었는지 확인하실 수 있도록 추가했습니다 */
 }
 
 .main {
+  font-size: 30px;
   display: flex;
   flex: 1;
 }
@@ -58,6 +69,6 @@ export default defineComponent({
 /* 이 CSS는 router-view에 배경색을 추가합니다. */
 .main > *:last-child {
   flex: 1;
-  background-color: yellow;
+  background-color: rgb(214, 214, 214);
 }
 </style>
