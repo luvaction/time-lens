@@ -7,12 +7,15 @@ import {
   Param,
   Put,
   Delete,
-  UsePipes,
+  UsePipes, 
+  Query
 } from '@nestjs/common';
 import { UserRegistrationService } from 'src/services/user/user.registration.service';
 import { UserService } from 'src/services/user.service';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import { UserDto } from 'src/dto/user.dto';
+import { UserListDto } from 'src/dto/user-list.dto';
+import { QueryUserDto } from 'src/dto/query-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -20,6 +23,20 @@ export class UserController {
     private readonly userRegistrationService: UserRegistrationService,
     private readonly userService: UserService,
   ) {}
+
+  @Get('list')
+  findUsers(
+    @Query('page') page: number, 
+    @Query('ipp') ipp: number,
+    @Query('start_date') start_date?: string, 
+    @Query('end_date') end_date?: string,
+    @Query('userInfo') userInfo?: any,
+    @Query('searchOption') searchOption?: string,
+    @Query('sort') sort?: string,
+    @Query('order') order?: 'asc' | 'desc'
+  ): Promise<UserListDto> {
+    return this.userService.findUsers(page, ipp, start_date, end_date, userInfo, searchOption, sort, order);
+  }
 
   @Get(':user_id')
   async getUser(@Param('user_id') user_id: string) {
