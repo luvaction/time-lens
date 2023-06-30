@@ -8,11 +8,16 @@ import { TestService } from 'src/services/test.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from '../config/database.config';
 import { UserModule } from './user.module';
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),
     UserModule,  // Import the UserModule
+    ConfigModule.forRoot({
+      cache: true,
+      isGlobal: true,
+    }),
   ],
   controllers: [
     AppController, 
