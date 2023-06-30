@@ -29,7 +29,7 @@ export default defineComponent({
 .layout {
   display: flex;
   flex-direction: column;
-  height: 50vh;
+  height: 100vh;
   overflow: auto; /* 이 코드가 추가되었습니다 */
 }
 
