@@ -8,3 +8,5 @@
 # volume
 volumes/
 
+.git
+*Dockerfile*

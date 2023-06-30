@@ -1,0 +1,41 @@
+version: "3"
+# tl(time-lens)
+services:
+  tl-db-dev:
+    container_name: tl-db-dev
+    image: mariadb:10.4
+    restart: always
+    ports: 
+      - "52000:3306"
+    volumes:
+      - "../volumes/dev/database/data:/var/lib/mysql"
+      - "../volumes/dev/database/sql:/docker-entrypoint-initdb.d"
+      - "../volumes/dev/database/conf.d:/etc/mysql/conf.d"
+      - "../volumes/dev/database/backup:/backup"
+    env_file: .env
+    environment:
+      TZ: Asia/Seoul
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    networks:
+      - dev
+  tl-api-dev:
+    container_name: tl-api-dev
+    image: tl-api-dev:0.0.1
+    restart: always
+    ports:
+      - "52001:3000"
+    volumes:
+      - ../volumes/dev/api/logs:/app/logs
+      - ../volumes/dev/api/public:/app/public
+    build:
+      context: ../code/back-end/api
+      dockerfile: Dockerfile
+    networks:
+      - dev
+    env_file: .env
+networks:
+  dev:
+    driver: bridge
