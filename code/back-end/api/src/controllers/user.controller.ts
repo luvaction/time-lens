@@ -7,8 +7,9 @@ import {
   Param,
   Put,
   Delete,
-  UsePipes, 
-  Query
+  UsePipes,
+  Query,
+  MethodNotAllowedException,
 } from '@nestjs/common';
 import { UserRegistrationService } from 'src/services/user/user.registration.service';
 import { UserService } from 'src/services/user.service';
@@ -16,6 +17,7 @@ import { ValidationPipe } from '../pipes/validation.pipe';
 import { UserDto } from 'src/dto/user.dto';
 import { UserListDto } from 'src/dto/user-list.dto';
 import { QueryUserDto } from 'src/dto/query-user.dto';
+import { LoginDto } from 'src/dto/login.dto';
 
 @Controller('user')
 export class UserController {
@@ -26,21 +28,33 @@ export class UserController {
 
   @Get('list')
   findUsers(
-    @Query('page') page: number, 
+    @Query('page') page: number,
     @Query('ipp') ipp: number,
-    @Query('start_date') start_date?: string, 
+    @Query('start_date') start_date?: string,
     @Query('end_date') end_date?: string,
     @Query('userInfo') userInfo?: any,
     @Query('searchOption') searchOption?: string,
     @Query('sort') sort?: string,
-    @Query('order') order?: 'asc' | 'desc'
+    @Query('order') order?: 'asc' | 'desc',
   ): Promise<UserListDto> {
-    return this.userService.findUsers(page, ipp, start_date, end_date, userInfo, searchOption, sort, order);
+    return this.userService.findUsers(
+      page,
+      ipp,
+      start_date,
+      end_date,
+      userInfo,
+      searchOption,
+      sort,
+      order,
+    );
   }
 
   @Get(':user_id')
-  async getUser(@Param('user_id') user_id: string) {
-    const user = await this.userService.findOne(user_id);
+  async getUser(
+    @Param('user_id') user_id: string,
+    @Query() searchParams: UserDto,
+  ) {
+    const user = await this.userService.findOne(searchParams);
     return user;
   }
 
@@ -50,15 +64,13 @@ export class UserController {
     return users;
   }
 
-
   @Post()
   @UsePipes(new ValidationPipe())
   async registerUser(@Body() userDto: UserDto) {
     const { user_id, password } = userDto;
-    const newUser = await this.userRegistrationService.createUser(
-      user_id,
-      password,
-    );
+    console.log('create');
+    // const newUser = await this.userRegistrationService.createUser(userDto);
+    const newUser = await this.userRegistrationService.createUser(userDto);
     return newUser;
   }
 
@@ -74,5 +86,20 @@ export class UserController {
   async deleteUser(@Param('id') id: string) {
     const result = await this.userService.delete(id);
     return result;
+  }
+
+  @Post('login')
+  async login(@Body() loginDto: LoginDto) {
+    if (!loginDto.user_id || !loginDto.password) {
+      throw new MethodNotAllowedException('User ID and Password are required');
+    }
+
+    const user = await this.userService.validateUser(
+      loginDto.user_id,
+      loginDto.password,
+    );
+
+    // Here, usually a JWT token will be created and returned
+    return user;
   }
 }

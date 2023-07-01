@@ -3,8 +3,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export function getTypeOrmConfig(): TypeOrmModuleOptions {
-  console.log('Config', process.env.DATABASE_HOST);
-
   return {
     type: 'mysql',
     host: process.env.DATABASE_HOST || 'localhost',

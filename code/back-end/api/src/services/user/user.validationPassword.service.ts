@@ -1,3 +1,5 @@
+// src/services/user/user.validationPassword.service.ts
+
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
@@ -8,5 +10,11 @@ export class UserValidationPasswordService {
     hashedPassword: string,
   ): Promise<boolean> {
     return await bcrypt.compare(plainPassword, hashedPassword);
+  }
+
+  async encryptPassword(password: string): Promise<string> {
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
   }
 }
