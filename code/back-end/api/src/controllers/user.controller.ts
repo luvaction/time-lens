@@ -1,5 +1,6 @@
 // src/controllers/user.controller.ts
 import {
+  Res,
   Controller,
   Post,
   Body,
@@ -11,6 +12,7 @@ import {
   Query,
   MethodNotAllowedException,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { UserRegistrationService } from 'src/services/user/user.registration.service';
 import { UserService } from 'src/services/user.service';
 import { ValidationPipe } from '../pipes/validation.pipe';
@@ -89,7 +91,7 @@ export class UserController {
   }
 
   @Post('login')
-  async login(@Body() loginDto: LoginDto) {
+  async login(@Body() loginDto: LoginDto, @Res() res: Response) {
     if (!loginDto.user_id || !loginDto.password) {
       throw new MethodNotAllowedException('User ID and Password are required');
     }
@@ -100,6 +102,6 @@ export class UserController {
     );
 
     // Here, usually a JWT token will be created and returned
-    return user;
+    return res.status(200).send(user);
   }
 }
