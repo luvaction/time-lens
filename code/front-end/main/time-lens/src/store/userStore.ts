@@ -1,12 +1,11 @@
-// src/stores/authStore.ts
 import { defineStore } from "pinia";
 import { User } from "../interfaces/user";
 
 export const useUserStore = defineStore({
   id: "user",
   state: () => ({
-    isLoggedIn: false,
-    user: null as User | null, // user 필드의 타입을 User | null로 명시합니다.
+    isLoggedIn: Boolean(localStorage.getItem("isLoggedIn")) || false,
+    user: JSON.parse(localStorage.getItem("user") || "null") as User | null,
   }),
   actions: {
     logIn(user: User) {

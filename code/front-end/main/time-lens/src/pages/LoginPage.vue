@@ -16,6 +16,7 @@ import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../store/userStore";
 import { login } from "../apis/auth";
+import axios from "axios";
 
 export default defineComponent({
   setup() {
@@ -36,10 +37,25 @@ export default defineComponent({
             router.push({ name: "Home" });
           }
         } catch (error) {
-          // error handling ...
+          if (axios.isAxiosError(error)) {
+            switch (error.response?.status) {
+              case 401:
+                alert("Invalid Password");
+                break;
+              case 404:
+                alert("User Not Found");
+                break;
+              case 405:
+                alert("Missing Parameters");
+                break;
+              default:
+                alert("Login Failed");
+                break;
+            }
+          }
         }
       } else {
-        alert("Please fill in all fields");
+        alert("Please Fill In All Fields");
       }
     };
 

@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- Page contents go here -->
-    Main
   </div>
 </template>
 
