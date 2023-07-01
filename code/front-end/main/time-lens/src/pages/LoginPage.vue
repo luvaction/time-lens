@@ -14,19 +14,33 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useUserStore } from "../store/userStore";
+import { login } from "../apis/auth";
+
 export default defineComponent({
   setup() {
     const router = useRouter();
+    const userStore = useUserStore();
     const username = ref("");
     const password = ref("");
 
-    const submitForm = () => {
+    const submitForm = async () => {
       if (username.value && password.value) {
-        router.push({ name: "Home" });
+        try {
+          const result = await login({
+            user_id: username.value,
+            password: password.value,
+          });
+          if (result?.status === 200) {
+            userStore.logIn(result.data);
+            router.push({ name: "Home" });
+          }
+        } catch (error) {
+          // error handling ...
+        }
       } else {
         alert("Please fill in all fields");
       }
-      console.log(username.value, password.value);
     };
 
     return { username, password, submitForm };
@@ -74,3 +88,4 @@ export default defineComponent({
   color: white;
 }
 </style>
+../store/userStore
