@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <Header />
+    <Header v-if="!$route.meta.hideHeader" />
     <div class="main">
       <Sidebar />
       <router-view />
@@ -43,13 +43,6 @@ $default-font-size: 28px;
   font-size: $default-font-size;
   max-height: 10%;
   background-color: $layout-bg-color;
-}
-
-.footer {
-  flex: 0 0 10%;
-  font-size: $default-font-size;
-  max-height: 10%;
-  background-color: $footer-bg-color;
 }
 
 .main {
