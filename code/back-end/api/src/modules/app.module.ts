@@ -9,13 +9,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { getTypeOrmConfig } from '../config/database.config';
 import { UserModule } from './user.module';
 import { ConfigModule } from '@nestjs/config';
-import { ConfigService } from '../config/service.config';
-
+// import { ConfigService } from '../config/service.config';
+import * as path from 'path';
+// const envFilePath = `.env.${process.env.NODE_ENV}`;
 @Module({
   imports: [
     UserModule, // Import the UserModule
     ConfigModule.forRoot({
-      envFilePath: `.env.${process.env.NODE_ENV}`,
+      // envFilePath: path.resolve(process.cwd(), envFilePath),
       cache: true,
       isGlobal: true,
       ignoreEnvFile: false,
@@ -30,7 +31,7 @@ import { ConfigService } from '../config/service.config';
     // UserController is now provided by UserModule
   ],
   providers: [
-    ConfigService,
+    // ConfigService,
     AppService,
     TestService,
     // UserService and UserRegistrationService are now provided by UserModule

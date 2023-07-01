@@ -21,6 +21,21 @@ services:
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     networks:
       - local
+  tl-api-local:
+    container_name: tl-api-local
+    image: tl-api-local:0.0.1
+    restart: always
+    ports:
+      - "51001:3000"
+    volumes:
+      - ../volumes/dev/api/logs:/app/logs
+      - ../volumes/dev/api/public:/app/public
+    build:
+      context: ../code/back-end/api
+      dockerfile: Dockerfile.local
+    networks:
+      - local
+    env_file: .env.local
 networks:
   local:
     driver: bridge
