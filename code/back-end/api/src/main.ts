@@ -4,10 +4,11 @@ import { ErrorHandlerMiddleware } from './middleware/errorhandler.middleware';
 import { HttpExceptionFilter } from './common/http-exception.filter';
 
 async function bootstrap() {
+  console.log('Database host:', process.env.DATABASE_HOST);
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new ErrorHandlerMiddleware());
   app.useGlobalFilters(new HttpExceptionFilter());
-  const port = process.env.API_PORT || 3000
+  const port = process.env.API_PORT || 3000;
   await app.listen(port);
 }
 bootstrap();

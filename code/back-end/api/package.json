@@ -14,6 +14,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+    "start:test": "cross-env NODE_ENV=test nest start --watch",
     "start:local": "cross-env NODE_ENV=local nest start --watch",
     "start:development": "cross-env NODE_ENV=dev nest start --watch",
     "start:production": "cross-env NODE_ENV=prod nest start",
