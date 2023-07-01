@@ -2,6 +2,7 @@
   <header class="header">
     <button class="header-btn">Button 1</button>
     <button class="header-btn">Button 2</button>
+    <button class="header-btn">Button 3</button>
     <div class="dropdown" @click="toggleDropdown">
       <button class="dropbtn">
         {{ user?.user_id }}<i class="fa fa-caret-down"></i>
