@@ -1,6 +1,7 @@
 <template>
   <header class="header">
     <button class="header-btn" @click="goToHomePage">Home</button>
+    <button class="header-btn" @click="goToTimeLensPage">TimeLens</button>
     <button class="header-btn" @click="goToPlanPage">Plan</button>
     <button class="header-btn" @click="goToSettingsPage">Settings</button>
     <div class="dropdown" @click="toggleDropdown">
@@ -54,6 +55,11 @@ export default defineComponent({
     const goToPlanPage = () => {
       router.push({ name: "Plan" });
     };
+
+    const goToTimeLensPage = () => {
+      router.push({ name: "TimeLens" });
+    };
+
     const goToSettingsPage = () => {
       router.push({ name: "Settings" });
     };
@@ -67,6 +73,7 @@ export default defineComponent({
       goToPlanPage,
       goToHomePage,
       goToSettingsPage,
+      goToTimeLensPage,
     };
   },
 });

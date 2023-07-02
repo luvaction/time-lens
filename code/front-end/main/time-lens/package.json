@@ -9,14 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "bootstrap-vue-3": "^0.5.1",
     "pinia": "^2.1.4",
+    "v-calendar": "^3.0.3",
     "vue": "^3.3.4",
+    "vue-cal": "^4.8.1",
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
+    "@types/node": "^20.3.3",
     "@vitejs/plugin-vue": "^4.1.0",
     "sass": "^1.63.6",
     "typescript": "^5.0.2",

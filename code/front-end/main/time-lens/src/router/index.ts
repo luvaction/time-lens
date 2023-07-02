@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomePage from "../pages/HomePage.vue";
 import LoginPage from "../pages/LoginPage.vue";
+import HomePage from "../pages/HomePage.vue";
+import TimeLensPage from "../pages/TimeLensPage.vue";
 import PlanPage from "../pages/PlanPage.vue";
 import SettingsPage from "../pages/SettingsPage.vue";
 
@@ -9,6 +10,12 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomePage,
+  },
+  {
+    path: "/TimeLens",
+    name: "TimeLens",
+    component: TimeLensPage,
+    meta: { hideHeader: false },
   },
   {
     path: "/login",

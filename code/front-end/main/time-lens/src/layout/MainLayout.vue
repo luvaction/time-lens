@@ -39,7 +39,6 @@ $default-font-size: 28px;
 }
 
 .main {
-  font-size: $default-font-size;
   display: flex;
   flex: 1;
 }

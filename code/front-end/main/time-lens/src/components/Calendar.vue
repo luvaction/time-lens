@@ -113,6 +113,7 @@ export default {
     border-collapse: collapse;
 
     th {
+      font-size: 12px;
       background-color: rgb(29, 29, 29);
       color: #fff;
       height: 2em;
@@ -122,7 +123,7 @@ export default {
     }
     td {
       background-color: #adadad;
-      height: 2em;
+      height: 1em;
       border: 1px solid rgb(49, 49, 49);
       text-align: center;
       padding: 10px;
