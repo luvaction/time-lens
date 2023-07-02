@@ -4,38 +4,42 @@
     <!-- <button class="header-btn" @click="goToTimeLensPage">TimeLens</button> -->
     <button class="header-btn" @click="goToPlanPage">Plan</button>
     <button class="header-btn" @click="goToSettingsPage">Settings</button>
-    <div class="dropdown" @click="toggleDropdown">
-      <button class="dropbtn">
-        {{ user?.user_id }}<i class="fa fa-caret-down"></i>
-      </button>
-      <div
-        class="dropdown-content"
-        :class="{ 'dropdown-show': isDropdownOpen }"
-      >
-        <a>{{ user?.user_id }}({{ user?.name }})</a>
-        <a @click="logOut">Logout</a>
+    <div class="dropdown">
+      <div v-if="isLoggedIn" @click="toggleDropdown">
+        <button class="dropbtn">
+          {{ user?.user_id }}<i class="fa fa-caret-down"></i>
+        </button>
+        <div
+          class="dropdown-content"
+          :class="{ 'dropdown-show': isDropdownOpen }"
+        >
+          <a>{{ user?.user_id }}({{ user?.name }})</a>
+          <a @click="logOut">Logout</a>
+        </div>
       </div>
+
+      <button v-else class="login-btn" @click="goToLoginPage">Login</button>
     </div>
   </header>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../store/userStore";
-
+const isLoggedIn = computed(() => useUserStore().isLoggedIn);
 export default defineComponent({
   name: "Header",
   emits: ["dayClicked"],
   setup() {
+    console.log("isLoggedIn1:", isLoggedIn.value);
+    console.log("isLoggedIn2:", useUserStore().isLoggedIn);
     const router = useRouter();
     const userStore = useUserStore();
 
-    const isLoggedIn = userStore.isLoggedIn;
     const user = userStore.user;
 
     const isDropdownOpen = ref(false);
-
     const goToLoginPage = () => {
       router.push({ name: "Login" });
     };
@@ -43,6 +47,7 @@ export default defineComponent({
     const logOut = () => {
       userStore.logOut();
       goToLoginPage();
+      console.log("isLoggedIn3", isLoggedIn.value);
     };
 
     const toggleDropdown = () => {
@@ -102,6 +107,21 @@ export default defineComponent({
   }
 }
 
+.login-btn {
+  background-color: #f87800;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-left: auto; // 여기에 추가
+  &:hover {
+    background-color: #e66f00;
+  }
+}
 .dropdown {
   position: relative;
   display: inline-block;

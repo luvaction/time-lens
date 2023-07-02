@@ -21,7 +21,7 @@ const routes = [
     path: "/login",
     name: "Login",
     component: LoginPage,
-    meta: { hideHeader: true },
+    meta: { hideHeader: false },
   },
   {
     path: "/plan",

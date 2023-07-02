@@ -4,7 +4,7 @@ import { User } from "../interfaces/user";
 export const useUserStore = defineStore({
   id: "user",
   state: () => ({
-    isLoggedIn: Boolean(localStorage.getItem("isLoggedIn")) || false,
+    isLoggedIn: localStorage.getItem("isLoggedIn") === "true" ? true : false,
     user: JSON.parse(localStorage.getItem("user") || "null") as User | null,
   }),
   actions: {
