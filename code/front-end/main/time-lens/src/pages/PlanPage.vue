@@ -1,6 +1,6 @@
 <template>
   <div class="plan-page">
-    <!-- <h2>Plan Your Day</h2> -->
+    <h1>Plan Your Day</h1>
     <Calendar />
   </div>
 </template>
@@ -17,15 +17,11 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .plan-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
+  margin: 0 auto;
   h1 {
-    margin-bottom: 2em;
+    font-size: 2.5em;
   }
 }
 </style>
