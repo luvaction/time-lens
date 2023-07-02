@@ -1,6 +1,4 @@
 <template>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <div class="calendar">
     <div class="header">
       <button @click="prevMonth">Prev</button>
@@ -33,13 +31,25 @@
       </tr>
     </table>
   </div>
+
+  <PlanModal
+    v-if="selectedDate"
+    :show="showModal"
+    :date="selectedDate"
+    @close="closeModal"
+  />
 </template>
+
 <script lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, SetupContext } from "vue";
+import PlanModal from "./PlanModal.vue"; // adjust path to your PlanModal.vue file
 
 export default {
   name: "Calendar",
-  setup() {
+  components: {
+    PlanModal,
+  },
+  setup(_, context: SetupContext) {
     const date = ref(new Date());
     const selectedDate = ref<Date | null>(null);
 
@@ -88,11 +98,30 @@ export default {
       );
     };
 
+    const showModal = ref(false);
+
     const selectDate = (day: Date) => {
-      selectedDate.value = day;
+      if (day) {
+        context.emit("dayClicked", day);
+        // selectedDate.value = day;
+        // showModal.value = true;
+      }
     };
 
-    return { date, calendar, prevMonth, nextMonth, selectDate, selectedDate };
+    const closeModal = () => {
+      showModal.value = false;
+    };
+
+    return {
+      date,
+      calendar,
+      prevMonth,
+      nextMonth,
+      selectDate,
+      selectedDate,
+      showModal,
+      closeModal,
+    };
   },
 };
 </script>

@@ -26,6 +26,7 @@ import { useUserStore } from "../store/userStore";
 
 export default defineComponent({
   name: "Header",
+  emits: ["dayClicked"],
   setup() {
     const router = useRouter();
     const userStore = useUserStore();
