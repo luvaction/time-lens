@@ -5,7 +5,7 @@
       <Sidebar />
       <router-view />
     </div>
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
@@ -26,10 +26,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$layout-bg-color: rgb(158, 116, 99);
-$footer-bg-color: rgb(48, 48, 48);
+$layout-bg-color: rgb(255, 255, 255);
+$footer-bg-color: rgb(255, 255, 255);
 $sidebar-bg-color: rgb(102, 72, 28);
-$main-bg-color: rgb(214, 214, 214);
+$main-bg-color: rgb(255, 255, 255);
 $default-font-size: 28px;
 .layout {
   display: flex;

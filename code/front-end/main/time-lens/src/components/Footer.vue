@@ -1,19 +1,11 @@
 <template>
   <footer class="footer">
     <div class="footer-content">
-      <div class="about-us">
-        <h3>About Us</h3>
-        <p>JYK</p>
-      </div>
       <div class="contact-us">
-        <h3>Contact Us</h3>
+        <h3>Contact</h3>
+        <p>Name: JY Kim</p>
         <p>Email: luvaction0@gmail.com</p>
-        <!-- <p>Phone: Secret</p> -->
       </div>
-      <!-- <div class="follow-us">
-        <h3>Follow Us</h3>
-        <p>Links to social media profiles.</p>
-      </div> -->
     </div>
   </footer>
 </template>
@@ -30,24 +22,23 @@ export default defineComponent({
 $layout-bg-color: rgb(160, 160, 160);
 $footer-bg-color: rgb(48, 48, 48);
 $sidebar-bg-color: rgb(102, 72, 28);
-$main-bg-color: rgb(214, 214, 214);
-$default-font-size: 16px;
+$main-bg-color: rgb(255, 255, 255);
+$default-font-size: 10px;
 
 .footer {
   display: flex;
-  justify-content: center;
-  padding: 20px;
-  flex: 0 0 10%;
   font-size: $default-font-size;
-  max-height: 13%;
+  max-height: 10%;
   background-color: $footer-bg-color;
+  margin-top: 20px;
+  padding: 20px; /* padding for the whole footer */
 }
 
 .footer-content {
+  color: rgb(156, 120, 20);
   display: flex;
-  justify-content: space-around; /* distribute evenly */
-  align-items: center; /* vertical alignment */
   width: 100%;
+  justify-content: space-around; /* distribute the content evenly */
 }
 
 .about-us,
@@ -55,5 +46,13 @@ $default-font-size: 16px;
 .follow-us {
   text-align: center; /* text alignment in each block */
   flex: 1;
+
+  h3 {
+    margin-bottom: 10px; /* spacing between the header and the content */
+  }
+
+  p {
+    margin: 5px 0; /* decrease the spacing between the paragraphs */
+  }
 }
 </style>
