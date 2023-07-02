@@ -26,7 +26,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$layout-bg-color: rgb(160, 160, 160);
+$layout-bg-color: rgb(158, 116, 99);
 $footer-bg-color: rgb(48, 48, 48);
 $sidebar-bg-color: rgb(102, 72, 28);
 $main-bg-color: rgb(214, 214, 214);
@@ -36,13 +36,6 @@ $default-font-size: 28px;
   flex-direction: column;
   height: 100vh;
   overflow: auto;
-}
-
-.header {
-  flex: 0 0 10%;
-  font-size: $default-font-size;
-  max-height: 10%;
-  background-color: $layout-bg-color;
 }
 
 .main {

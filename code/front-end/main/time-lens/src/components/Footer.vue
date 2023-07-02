@@ -7,13 +7,13 @@
       </div>
       <div class="contact-us">
         <h3>Contact Us</h3>
-        <p>Email: example@example.com</p>
-        <p>Phone: +1 123 456 7890</p>
+        <p>Email: luvaction0@gmail.com</p>
+        <!-- <p>Phone: Secret</p> -->
       </div>
-      <div class="follow-us">
+      <!-- <div class="follow-us">
         <h3>Follow Us</h3>
         <p>Links to social media profiles.</p>
-      </div>
+      </div> -->
     </div>
   </footer>
 </template>
@@ -23,7 +23,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Footer",
-  // any props or data
 });
 </script>
 
@@ -36,7 +35,7 @@ $default-font-size: 16px;
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px;
   flex: 0 0 10%;
   font-size: $default-font-size;
@@ -46,13 +45,15 @@ $default-font-size: 16px;
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around; /* distribute evenly */
+  align-items: center; /* vertical alignment */
   width: 100%;
 }
 
 .about-us,
 .contact-us,
 .follow-us {
+  text-align: center; /* text alignment in each block */
   flex: 1;
 }
 </style>

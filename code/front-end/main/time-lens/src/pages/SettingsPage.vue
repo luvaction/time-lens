@@ -1,6 +1,6 @@
 <template>
   <div>
-    Home
+    Settings
     <!-- Page contents go here -->
   </div>
 </template>
@@ -9,7 +9,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "HomePage",
+  name: "PlanPage",
   // any props or data
 });
 </script>

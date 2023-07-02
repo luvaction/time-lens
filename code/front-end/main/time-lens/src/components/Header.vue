@@ -1,8 +1,8 @@
 <template>
   <header class="header">
-    <button class="header-btn">Button 1</button>
-    <button class="header-btn">Button 2</button>
-    <button class="header-btn">Button 3</button>
+    <button class="header-btn" @click="goToHomePage">Home</button>
+    <button class="header-btn" @click="goToPlanPage">Plan</button>
+    <button class="header-btn" @click="goToSettingsPage">Settings</button>
     <div class="dropdown" @click="toggleDropdown">
       <button class="dropbtn">
         {{ user?.user_id }}<i class="fa fa-caret-down"></i>
@@ -47,6 +47,16 @@ export default defineComponent({
       isDropdownOpen.value = !isDropdownOpen.value;
     };
 
+    const goToHomePage = () => {
+      router.push({ name: "Home" });
+    };
+
+    const goToPlanPage = () => {
+      router.push({ name: "Plan" });
+    };
+    const goToSettingsPage = () => {
+      router.push({ name: "Settings" });
+    };
     return {
       isLoggedIn,
       user,
@@ -54,6 +64,9 @@ export default defineComponent({
       goToLoginPage,
       isDropdownOpen,
       toggleDropdown,
+      goToPlanPage,
+      goToHomePage,
+      goToSettingsPage,
     };
   },
 });
@@ -61,7 +74,8 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .header {
-  background-color: blue;
+  min-height: 6%;
+  background-color: rgb(105, 105, 105);
   display: flex;
   align-items: center;
   padding: 0 1rem;
