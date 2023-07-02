@@ -21,7 +21,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .home-page {
   padding: 20px;
   text-align: center;
