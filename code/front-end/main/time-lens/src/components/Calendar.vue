@@ -1,4 +1,6 @@
 <template>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <div class="calendar">
     <div class="header">
       <button @click="prevMonth">Prev</button>
@@ -94,16 +96,22 @@ export default {
   },
 };
 </script>
+
 <style scoped lang="scss">
+@import "../style/variables.scss";
+
 .calendar {
-  font-size: 19px;
-  width: 50%;
+  max-width: $base-unit * 25;
+  width: 100%;
+  overflow-x: visible;
+  font-size: $font-size-large;
+  width: $base-unit * 25;
   margin: 0 auto;
 
   .header {
     display: flex;
     justify-content: space-between;
-    padding: 1em 0;
+    padding: $base-unit * 0.5;
   }
 
   table {
@@ -113,20 +121,20 @@ export default {
     border-collapse: collapse;
 
     th {
-      font-size: 12px;
+      font-size: $font-size-medium;
       background-color: rgb(29, 29, 29);
       color: #fff;
-      height: 2em;
+      height: $base-unit * 2;
       border: 1px solid rgb(49, 49, 49);
       text-align: center;
-      padding: 10px;
+      padding: $base-padding * 2;
     }
     td {
       background-color: #adadad;
-      height: 1em;
+      height: $base-unit * 2;
       border: 1px solid rgb(49, 49, 49);
       text-align: center;
-      padding: 10px;
+      padding: $base-padding * 2;
       &:hover.hoverable {
         cursor: pointer;
         background-color: #bd5b00;
@@ -138,11 +146,33 @@ export default {
       &.empty {
         background-color: rgb(214, 214, 214);
       }
+    }
+  }
 
-      @media (max-width: 800px) {
-        width: 80px;
-        height: 80px;
-        font-size: 14px;
+  @media (max-width: 800px) {
+    width: $base-unit * 40;
+
+    table {
+      th {
+        height: $base-unit * 1.5;
+        padding: $base-padding;
+      }
+      td {
+        width: $base-unit * 4;
+        height: $base-unit * 4;
+        font-size: $font-size-medium;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: $base-unit * 20;
+
+    table {
+      td {
+        width: $base-unit * 5;
+        height: $base-unit * 5;
+        font-size: $font-size-large;
       }
     }
   }

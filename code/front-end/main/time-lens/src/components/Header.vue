@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <button class="header-btn" @click="goToHomePage">Home</button>
-    <button class="header-btn" @click="goToTimeLensPage">TimeLens</button>
+    <!-- <button class="header-btn" @click="goToTimeLensPage">TimeLens</button> -->
     <button class="header-btn" @click="goToPlanPage">Plan</button>
     <button class="header-btn" @click="goToSettingsPage">Settings</button>
     <div class="dropdown" @click="toggleDropdown">
