@@ -24,20 +24,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, ref, watch, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../store/userStore";
 const isLoggedIn = computed(() => useUserStore().isLoggedIn);
+
 export default defineComponent({
   name: "Header",
-  emits: ["dayClicked"],
   setup() {
-    console.log("isLoggedIn1:", isLoggedIn.value);
-    console.log("isLoggedIn2:", useUserStore().isLoggedIn);
     const router = useRouter();
     const userStore = useUserStore();
 
-    const user = userStore.user;
+    const user = ref(userStore.user);
+    const isLoggedIn = computed(() => userStore.isLoggedIn);
 
     const isDropdownOpen = ref(false);
     const goToLoginPage = () => {
@@ -47,7 +46,6 @@ export default defineComponent({
     const logOut = () => {
       userStore.logOut();
       goToLoginPage();
-      console.log("isLoggedIn3", isLoggedIn.value);
     };
 
     const toggleDropdown = () => {
@@ -69,6 +67,18 @@ export default defineComponent({
     const goToSettingsPage = () => {
       router.push({ name: "Settings" });
     };
+
+    watch(isLoggedIn, (newVal) => {
+      nextTick(() => {
+        if (newVal) {
+          user.value = userStore.user; // 로그인 후 사용자 정보 업데이트
+          goToHomePage();
+        } else {
+          goToLoginPage();
+        }
+      });
+    });
+
     return {
       isLoggedIn,
       user,

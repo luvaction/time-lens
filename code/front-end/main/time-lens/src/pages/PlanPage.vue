@@ -21,6 +21,7 @@ export default defineComponent({
     Calendar,
     PlanModal,
   },
+  emits: ["dayClicked"],
   setup() {
     const showModal = ref(false);
     const selectedDate = ref<Date | null>(null);

@@ -46,6 +46,7 @@ import PlanModal from "./PlanModal.vue"; // adjust path to your PlanModal.vue fi
 
 export default {
   name: "Calendar",
+  emits: ["dayClicked"],
   components: {
     PlanModal,
   },
