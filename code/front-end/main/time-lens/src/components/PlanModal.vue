@@ -113,7 +113,7 @@ export default defineComponent({
   /* 모달 내용 스타일 */
   .modal-content {
     font-size: 16px;
-    background-color: #4d4d4d;
+    background-color: #292929;
     padding: 30px;
     /* border: 1px solid #888; */
     border-radius: 10px;
